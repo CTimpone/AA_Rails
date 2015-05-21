@@ -1,0 +1,13 @@
+<h2><%= params[:header] %>Add Comment</h2>
+
+<form action="<%=comment_url%>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="comment[commentable_id]" value="<%=params[:comm_id]%>">
+  <input type="hidden" name="comment[commentable_type]" value="<%=params[:type]%>">
+  <label>
+    Body
+    <input type="text" name="comment[body]" value="<%=@comment.body%>">
+  </label>
+
+  <button>Create Comment</button>
+</form>

@@ -1,0 +1,45 @@
+<%= auth_token %>
+
+<label>
+  Body
+  <input type="textarea" name="personal_goal[body]" value="<%= @personal_goal.body %>">
+</label>
+
+<br>
+<label>
+  Public
+  <input type="radio"
+         name="personal_goal[public]"
+         value="true"
+         <%= "checked" if @personal_goal.public%>>
+</label>
+
+<label>
+  Private
+  <input type="radio"
+         name="personal_goal[public]"
+         value="false"
+         <%= "checked" if !@personal_goal.public.nil? && !@personal_goal.public%>>
+</label>
+
+<br>
+<label>
+  Completed
+  <input type="radio"
+         name="personal_goal[completed]"
+         value="true"
+         <%= "checked" if @personal_goal.completed%>>
+</label>
+
+<label>
+  In Progress
+  <input type="radio"
+         name="personal_goal[completed]"
+         value="false"
+         <%= "checked" if !@personal_goal.completed.nil? && !@personal_goal.completed%>>
+</label>
+
+<br>
+<button>Submit</button>
+
+</form>

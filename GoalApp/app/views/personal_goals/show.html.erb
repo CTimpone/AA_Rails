@@ -1,0 +1,46 @@
+<h2><%= @personal_goal.body %> - <%= @personal_goal.user.username %></h2>
+
+
+
+<% if @personal_goal.public %>
+
+  <h3>Public</h3>
+
+<% else %>
+
+  <h3>Private</h3>
+
+<% end %>
+
+<% if @personal_goal.completed %>
+
+  <h3>Completed</h3>
+
+<% else %>
+
+  <h3>In Progress</h3>
+
+<% end %>
+<br>
+
+<ol>
+  <% @personal_goal.comments.each do |comment| %>
+  <li>
+    <%= comment.body %>
+  </li>
+</ol>
+<% end%>
+
+<br>
+<%= link_to "Add Comment", new_comment_url(type: "PersonalGoal", comm_id: @personal_goal.id, header: "#{@personal_goal.body} - ") %>
+
+<% if current_user.id == @personal_goal.user_id %>
+
+  <%= link_to "Edit Goal", edit_personal_goal_url(@personal_goal) %>
+  <br>
+  <%= link_to "Delete Goal", personal_goal_url(@personal_goal), method: :delete %>
+
+<% end %>
+
+<br>
+<%= link_to "Goals Index", personal_goals_url %>

@@ -1,0 +1,27 @@
+<h2><%= @user.username %></h2>
+
+<ol>
+  <% @user.personal_goals.each do |pg| %>
+  <li>
+    <% if (current_user == @user) || (pg.public == true)%>
+      <%= link_to pg.body, personal_goal_url(pg) %>
+    <% end %>
+  </li>
+</ol>
+<% end %>
+
+<br>
+
+<ol>
+  <% @user.comments.each do |comment| %>
+  <li>
+    <%= comment.body %>
+  </li>
+</ol>
+<% end %>
+
+<br>
+
+<%= link_to "Add Comment", new_comment_url(type: "User", comm_id: @user.id, header: "#{@user.username} - ") %>
+
+<%= link_to "Create Goal", new_personal_goal_url %>

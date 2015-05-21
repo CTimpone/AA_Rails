@@ -1,0 +1,11 @@
+<h2>Goals Index</h2>
+
+<ol>
+  <% @personal_goals.each do |pg| %>
+  <li>
+    <%= link_to pg.body, personal_goal_url(pg) %>
+  </li>
+</ol>
+<% end %>
+
+<%= link_to "Create Goal", new_personal_goal_url %>
