@@ -1,0 +1,85 @@
+<h2> <%= @attributes['name'] %> </h2>
+
+<table>
+  <tr>
+    <th>
+      Attribute
+    </th>
+    <th>
+      Value
+    </th>
+  </tr>
+
+  <% @attributes.each do |key, val| %>
+
+    <tr>
+      <td>
+        <%= "#{key.capitalize}" %>
+      </td>
+      <td>
+        <%= "#{val}" %>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>
+      Owner
+    </td>
+    <td>
+      <%= User.find(@owner).username %>
+    </td>
+  </tr>
+</table>
+
+<br>
+<h4>Description</h4>
+<p>
+  <%= @description %>
+</p>
+
+<form  action="<%= edit_cat_url(@attributes) %>" method="get">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+    <% if is_owner? %>
+      <%= "<button>Edit Cat</button>".html_safe %>
+    <% end %>
+</form>
+<br>
+<h2> Rental Requests</h2>
+
+<table>
+  <tr>
+    <th>
+      ID
+    </th>
+    <th>
+      Status
+    </th>
+    <th>
+      Start Date
+    </th>
+    <th>
+      End Date
+    </th>
+    <th>
+      Requester
+    </th>
+  </tr>
+
+  <% @cat_rental_requests.each_with_index do |req, i| %>
+    <tr>
+      <%= render "rental_table", req: req %>
+    </tr>
+  <% end %>
+
+</table>
+
+<br>
+
+<a href="<%= new_cat_rental_request_url %>">Request Cat</a>
+
+<br>
+<br>
+
+<a href="<%= cats_url %>">Return to Index</a>

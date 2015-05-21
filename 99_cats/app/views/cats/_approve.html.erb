@@ -1,0 +1,9 @@
+<form action="<%= approve_cat_rental_request_url(req.id) %>" method="post">
+
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+  <% if is_owner? %>
+    <%= "<button>Approve</button>".html_safe %>
+  <% end %>
+</form>

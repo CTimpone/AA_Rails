@@ -1,0 +1,12 @@
+<table>
+  <td>
+    <form action="<%=new_sessions_url%> " method="get">
+
+      <input type="hidden"
+             name="authenticity_token"
+             value="<%= form_authenticity_token %>">
+
+      <button>Sign In</button>
+    </form>
+  </td>
+</table>

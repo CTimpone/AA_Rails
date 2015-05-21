@@ -1,0 +1,19 @@
+<% if signed_in?  %>
+  <table>
+    <td>
+      <%= current_user.username  %>
+    </td>
+    <td>
+      <form action="<%=sessions_url%> " method="post">
+
+        <input type="hidden" name="_method" value="delete">
+
+        <input type="hidden"
+               name="authenticity_token"
+               value="<%= form_authenticity_token %>">
+
+          <button>Sign Out</button>
+      </form>
+    </td>
+  </table>
+<% end %>

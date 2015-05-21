@@ -1,0 +1,25 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+
+development:
+  <<: *default
+  database: NinetyNineCats_development
+  username: appacademy
+  host: localhost
+
+
+test:
+  <<: *default
+  database: NinetyNineCats_test
+  username: appacademy
+  host: localhost
+
+
+production:
+  <<: *default
+  database: NinetyNineCats_production
+  username: appacademy
+  host: localhost

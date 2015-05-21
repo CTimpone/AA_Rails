@@ -1,0 +1,11 @@
+<%= render partial: "layouts/errors" %>
+
+<form action="<%= cats_url %>" method="post">
+
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+<h2>Post your new cat</h2>
+
+<%= render "form" %>
