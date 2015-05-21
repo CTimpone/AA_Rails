@@ -1,0 +1,5 @@
+<%= title_render("Edit Sub") %>
+
+<form action="<%=sub_url(@sub)%>" method="post">
+<input type="hidden" name="_method" value="patch">
+<%= render "form", commit: "Save Changes" %>

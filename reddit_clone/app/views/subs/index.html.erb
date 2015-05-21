@@ -1,0 +1,13 @@
+<%= title_render("Subs Index") %>
+
+<ul>
+  <% @subs.each do |sub| %>
+    <li>
+      <a href="<%= sub_url(sub)%>"><%= sub.title%></a>
+    </li>
+  <% end %>
+</ul>
+
+<% if signed_in? %>
+<%= button_to "Create New Sub", new_sub_url, method: :get %>
+<% end %>

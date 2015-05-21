@@ -1,0 +1,38 @@
+<%= auth_token %>
+
+<label for="post_title">Title</label>
+<input type="text"
+       name="post[title]"
+       id="post_title"
+       value="<%= @post.title %>">
+<br>
+
+<label for="post_url">URL(optional)</label>
+<input type="text"
+      name="post[url]"
+      id="post_url"
+      value="<%= @post.url %>">
+
+<br>
+<label for="post_content">Body(optional)</label>
+<textarea id="post_content" name="post[content]"><%=@post.content%></textarea>
+
+<br>
+<br>
+<b>Post to:</b>
+<br>
+
+<input type="hidden" name="post[sub_ids][]" value="">
+<% Sub.all.each do |sub| %>
+  <label for="post_sub"><%= sub.title %></label>
+  <input type="checkbox"
+         id="post_sub"
+         name="post[sub_ids][]"
+         value="<%= sub.id%>"
+         <%= "checked" if @post.subs.include?(sub) %>
+         <br>
+         <br>
+<% end %>
+<br>
+<button name="button"><%= commit %></button>
+</form>

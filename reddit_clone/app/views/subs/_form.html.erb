@@ -1,0 +1,19 @@
+<%= auth_token %>
+
+<label for="sub_title">Title</label>
+<input type="text"
+       name="sub[title]"
+       id="sub_title"
+       value="<%= @sub.title %>">
+<br>
+
+<label for="sub_desc">Description</label>
+<input type="text"
+      name="sub[description]"
+      id="sub_desc"
+      value="<%= @sub.description %>">
+
+<br>
+<br>
+<button name="button"><%= commit %></button>
+</form>

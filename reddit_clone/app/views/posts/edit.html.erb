@@ -1,0 +1,5 @@
+<%= title_render("Edit Post") %>
+
+<form action="<%=post_url(@post)%>" method="post">
+<input type="hidden" name="_method" value="patch">
+<%= render "form", commit: "Save Changes" %>

@@ -1,0 +1,28 @@
+<%= title_render(@sub.title) %>
+<%= @sub.description %>
+
+<%= button_to "Create Post", new_post_url, method: :get %>
+<br>
+
+<ol>
+<% @sub.posts.each do |post| %>
+  <li>
+    <% if post.url.blank? %>
+      <a href="<%=post_url(post)%>"><%= post.title %></a>
+    <% else %>
+    <table>
+      <a href="<%= post.url %>"><%= post.title %></a>
+      <%= button_to "Comments", post_url(post), method: :get %>
+    </table>
+    <% end %>
+  </li>
+<% end %>
+</ol>
+
+<br>
+<% if current_user == @sub.user %>
+  <%= button_to "Edit Sub", edit_sub_url(@sub), method: :get %>
+<% end %>
+
+<br>
+<%= button_to "Subs Index", subs_url, method: :get %>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    <%= yield(:title).blank? ? "Reddit" : yield(:title) %>
+  </title>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if signed_in? %>
+    <a href="<%= user_url(current_user)%>">
+      <%= current_user.username %>
+      </a>
+      <%= button_to "Sign-Out", session_url, method: :delete %>
+  <% else %>
+    <%= button_to "Sign-In", new_session_url, method: :get %>
+    <%= button_to "Register", new_user_url, method: :get %>
+  <% end %>
+  <ul>
+    <% flash[:errors].each do |error|%>
+      <li>
+        <%= error %>
+      </li>
+    <% end if flash[:errors]%>
+    <% flash[:errors]= nil%>
+  </ul>
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<% content_for(:title) {@post.title} %>
+<% if @post.url.blank? %>
+  <h1> <%= @post.title %> </h1>
+<% else %>
+  <h1> <a href="<%=@post.url%>"><%= @post.title %></a> </h1>
+<% end %>
+
+<%= @post.user.username %>
+<br>
+
+<% if current_user == @post.user %>
+  <%= button_to "Edit Post", edit_post_url(@post), method: :get %>
+<% end %>
+<br>
+
+<pre><%= @post.content %></pre>
+<form action="<%=new_comment_url%>" method="get">
+  <% auth_token%>
+  <input type="hidden" name="parent" value="<%=nil%>">
+  <input type="hidden" name="post_id" value="<%=@post.id%>">
+  <button>Reply to Post</button>
+</form>
+<br>
+
+<% unless @all_comments[nil].empty? %>
+  <%= render "comment", comment_id: nil  %>
+<% end %>
+
+
+<br>
+
+
+
+<% @post.subs.each do |sub| %>
+<%= button_to "#{sub.title}", sub_url(sub), method: :get %>
+<% end %>

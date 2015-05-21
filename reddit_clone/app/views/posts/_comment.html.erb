@@ -1,0 +1,26 @@
+<ol>
+  <% @all_comments[comment_id].each do |comment| %>
+  <li>
+    <table style="display:inline;">
+      <td>
+        <%= comment[:username] %>
+      </td>
+      <td>
+        <%= comment[:created_at] %>
+      </td>
+      <td>
+        <form action="<%=new_comment_url%>" method="get">
+          <% auth_token%>
+          <input type="hidden" name="parent" value="<%=comment[:id]%>">
+          <input type="hidden" name="post_id" value="<%=@post.id%>">
+          <button>Reply to Comment</button>
+        </form>
+      </td>
+    </table>
+    <pre><%= comment[:content] %></pre>
+    <% unless @all_comments[comment[:id]].empty? %>
+      <%= render "comment", comment_id: comment[:id]  %>
+    <% end %>
+  </li>
+  <% end %>
+</ol>

@@ -1,0 +1,11 @@
+<h2>Comment on <%= (Post.find(@comment.post_id)).title %></h2>
+By <%= (User.find(@comment.user_id)).username %> at <%= @comment.created_at %>
+<br>
+<form action="<%=new_comment_url%>" method="get">
+  <% auth_token%>
+  <input type="hidden" name="parent" value="<%=params[:id]%>">
+  <input type="hidden" name="post_id" value="<%=(Comment.find(params[:id])).post.id%>">
+  <button>Reply to Comment</button>
+</form>
+<br>
+<%= button_to "Return to Post", post_url(@comment.post_id), method: :get %>

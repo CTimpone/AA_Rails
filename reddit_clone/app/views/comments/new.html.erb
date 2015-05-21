@@ -1,0 +1,13 @@
+<h4>Add a Comment</h4>
+
+<form action="<%=post_comments_url(params[:post_id])%>" method="post">
+<%= auth_token %>
+
+<label for="comment_content"></label>
+<textarea name="comment[content]"
+          id="comment_content"></textarea>
+
+<input type="hidden" name="comment[parent_id]" value="<%=params[:parent]%>">
+
+<button>Submit</button>
+</form>
