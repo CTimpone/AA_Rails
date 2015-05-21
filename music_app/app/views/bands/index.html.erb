@@ -1,0 +1,11 @@
+<h2>Band Index</h2>
+
+<%= render "/shared/errors" %>
+
+<ol>
+  <% @bands.order(:id).each do |band| %>
+    <li><a href="<%= band_url(band) %>"><%= band.name %></a></li>
+  <% end %>
+</ol>
+
+<%= button_to "Add New Band", new_band_url, method: :get%>

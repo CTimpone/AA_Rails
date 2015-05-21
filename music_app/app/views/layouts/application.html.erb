@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MusicApp</title>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<% if logged_in? %>
+  <%= sign_out(current_user.email) %>
+<% else %>
+  <%= sign_in %>
+<% end %>
+
+
+<%= yield %>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<h2>
+  <% html = "#{@track.name}" %>
+  <% if @track.bonus == true
+        html += " - BONUS TRACK"
+      end%>
+  <%= html %>
+</h2>
+
+<h3> <%= "#{@track.album.band.name} - #{@track.album.name}" %></h3>
+
+<%= render "/shared/errors" %>
+
+<h3>Lyrics</h3>
+
+<pre><%=ugly_lyrics(@track.lyrics) %></pre>
+
+<br>
+<br>
+<% if has_note_on_track? %>
+  <%= "<form action=\"#{track_note_url(track_id: params[:id], id: current_note.id)}\" method=\"post\">".html_safe %>
+  <%= "<input type=\"hidden\" name=\"_method\" value=\"patch\">".html_safe %>
+  <%= render "/notes/form" %>
+<% else %>
+  <%= "<form action=\"#{track_notes_url(params[:id])}\" method=\"post\">".html_safe %>
+  <%= render "/notes/form" %>
+<% end %>
+<br>
+
+<table>
+  <th>
+    User
+  </th>
+  <th>
+    Note
+  </th>
+    <% @track.notes.each do |note| %>
+    <tr>
+      <td>
+        <%= note.user.email %>
+      </td>
+      <td>
+        <%= note.note %>
+      </td>
+      <td>
+        <% if current_user == note.user %>
+          <%= "<form action=\"#{track_note_url(track_id: params[:id], id: current_note.id)}\" method=\"post\">".html_safe %>
+            <%= "<input type=\"hidden\" name=\"_method\" value=\"delete\">".html_safe %>
+            <%= auth_token %>
+            <%= "<button>Delete Note</button>".html_safe %>
+          <%= "</form>".html_safe %>
+        <% end %>
+      </td>
+        </form>
+    </tr>
+    <% end %>
+</table>
+
+<br>
+
+<h3> </h3>
+<%= button_to "Add Track", new_album_track_url(@track), method: :get%>
+<br>
+
+<%= button_to "Edit Track", edit_track_url, method: :get%>
+
+<form action="<%= track_url(@track)%>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="delete">
+
+  <button>Delete Track</button>
+
+</form>
+
+<br>
+<br>
+
+<%= button_to "Return to Album", album_url(@track.album), method: :get %>

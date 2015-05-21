@@ -1,0 +1,7 @@
+<h2>Edit Band</h2>
+
+<%= render "/shared/errors" %>
+<form action="<%= band_url(@band)%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= render "form" %>
+</form>

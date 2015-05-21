@@ -1,0 +1,48 @@
+<%= auth_token %>
+
+<label for="track_name">Track Title</label>
+<input type="text"
+       name="track[name]"
+       id="track_name"
+       value="<%= @track.name %>">
+
+<br>
+
+<label for="track_album">Album</label>
+<select id="track_album" name="track[album_id]">
+    <option value=""></option>
+  <% Album.all.order(:id).each do |album| %>
+    <option value="<%= album.id %>"
+            <%= "selected" if album == @track.album %>>
+            <%="#{album.band.name} - #{album.name}"%></option>
+  <% end %>
+</select>
+
+<br>
+
+<label for="track_standard">Standard Track</label>
+<input type="radio"
+       id="track_standard"
+       name="track[bonus]"
+       value="false"
+       <%="checked" if @track.bonus == false %>>
+
+<label for="track_bonus">Bonus Track</label>
+<input type="radio"
+       id="track_bonus"
+       name="track[bonus]"
+       value="true"
+       <%="checked" if @track.bonus == true %>>
+
+<br>
+<label for="track_lyrics">Lyrics (Optional)</label>
+<br>
+  <textarea name="track[lyrics]"
+            id="track_lyrics"
+            rows="15"
+            cols="60"
+            ><%= @track.lyrics %></textarea>
+<br>
+<br>
+<button>Submit</button>
+</form>

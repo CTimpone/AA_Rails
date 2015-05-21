@@ -1,0 +1,27 @@
+<h2><%= @band.name %></h2>
+
+<ol>
+  <% @band.albums.order(:id).each do |album| %>
+    <li>
+      <a href="<%= album_url(album)%>"><%= album.name %></a>
+    </li>
+  <% end %>
+</ol>
+
+<%= button_to "Add Album", new_band_album_url(@band), method: :get%>
+<br>
+
+<%= button_to "Edit Band", edit_band_url, method: :get%>
+
+<form action="<%= band_url(@band)%>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="delete">
+
+  <button>Delete Band</button>
+
+</form>
+
+<br>
+<br>
+
+<%= button_to "Bands Index", bands_url, method: :get %>

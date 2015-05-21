@@ -1,0 +1,7 @@
+<h3>Please Submit the Form if You are: <%= (User.find(params[:user_id])).email %> </h3>
+<form action="<%=user_activate_url(params[:user_id])%>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="activation_token" value="<%=params[:activation_token]%>">
+  <br>
+  <button>Submit</button>
+</form>

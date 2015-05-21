@@ -1,0 +1,7 @@
+<h2>Edit Album Information</h2>
+
+<%= render "/shared/errors" %>
+
+<form action="<%= album_url(@album) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= render "form" %>

@@ -1,0 +1,7 @@
+<h2>Edit Track Information</h2>
+
+<%= render "/shared/errors" %>
+
+<form action="<%= track_url(@track) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= render "form" %>

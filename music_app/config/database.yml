@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: MusicApp_development
+  pool: 5
+  host: localhost
+  username: appacademy
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: MusicApp_test
+  pool: 5
+  host: localhost
+  username: appacademy
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: MusicApp_production
+  pool: 5
+  host: localhost
+  username: appacademy
+  password:
